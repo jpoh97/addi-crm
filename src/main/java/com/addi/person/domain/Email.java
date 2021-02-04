@@ -17,11 +17,15 @@ final class Email {
     }
 
     private void validateFormat(String email) {
-        Pattern pattern = Pattern.compile(REGEX_VALIDATE_EMAIL_FORMAT);
-        Matcher matcher = pattern.matcher(email);
-        if (!matcher.matches()) {
+        if (isInvalidFormat(email)) {
             throw new DomainException(INVALID_EMAIL_FORMAT_MESSAGE);
         }
+    }
+
+    private boolean isInvalidFormat(String email) {
+        Pattern pattern = Pattern.compile(REGEX_VALIDATE_EMAIL_FORMAT);
+        Matcher matcher = pattern.matcher(email);
+        return !matcher.matches();
     }
 
     @Override
