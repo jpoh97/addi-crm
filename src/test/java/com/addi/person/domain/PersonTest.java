@@ -42,7 +42,7 @@ final class PersonTest {
     @DisplayName("Throw exception when email has invalid format")
     void testPersonWithInvalidEmailFormat() {
         try {
-            new PersonBuilder().build();
+            new PersonBuilder().withEmail("Invalid email").build();
             fail();
         } catch (DomainException exception) {
             assertEquals("Invalid email format", exception.getMessage());

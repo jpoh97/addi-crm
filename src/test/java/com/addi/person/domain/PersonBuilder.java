@@ -9,7 +9,7 @@ final class PersonBuilder {
     private final LocalDate birthdate;
     private String firstname;
     private final String lastname;
-    private final String email;
+    private String email;
 
     PersonBuilder() {
         this.nationalIdentificationNumber = 42;
@@ -21,6 +21,11 @@ final class PersonBuilder {
 
     PersonBuilder withFirstname(String firstname) {
         this.firstname = firstname;
+        return this;
+    }
+
+    public PersonBuilder withEmail(String email) {
+        this.email = email;
         return this;
     }
 
