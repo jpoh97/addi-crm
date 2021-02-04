@@ -12,8 +12,8 @@ public final class Person {
     private final Email email;
 
     public static Person create(Integer nationalIdentificationNumber, LocalDate birthdate, String firstname, String lastname, String email) {
-        Email validEmail = Email.create(email);
-        Birthdate validBirthdate = Birthdate.create(birthdate);
+        Email validEmail = new Email(email);
+        Birthdate validBirthdate = new Birthdate(birthdate);
         return new Person(nationalIdentificationNumber, validBirthdate, firstname, lastname, validEmail);
     }
 

@@ -1,17 +1,24 @@
 package com.addi.person.domain;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 final class Email {
 
     private final String email;
 
-    static Email create(String emailText) {
-        return new Email(emailText);
+    Email(String email) {
+        validateFormat(email);
+        this.email = email;
     }
 
-    private Email(String email) {
-        this.email = email;
+    private void validateFormat(String email) {
+        Pattern pattern = Pattern.compile("^.+@.+\\..+$");
+        Matcher matcher = pattern.matcher(email);
+        if (!matcher.matches()) {
+            throw new DomainException("Invalid email format");
+        }
     }
 
     @Override

@@ -7,11 +7,7 @@ final class Birthdate {
 
     private final LocalDate birthdate;
 
-    static Birthdate create(LocalDate birthdate) {
-        return new Birthdate(birthdate);
-    }
-
-    private Birthdate(LocalDate birthdate) {
+    Birthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
