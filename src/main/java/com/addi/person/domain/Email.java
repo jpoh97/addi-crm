@@ -1,4 +1,4 @@
-package com.addi.domain;
+package com.addi.person.domain;
 
 import java.util.Objects;
 
