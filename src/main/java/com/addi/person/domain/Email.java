@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 
 final class Email {
 
+    private static final String INVALID_EMAIL_FORMAT_MESSAGE = "Invalid email format";
+    private static final String REGEX_VALIDATE_EMAIL_FORMAT = "^.+@.+\\..+$";
+
     private final String email;
 
     Email(String email) {
@@ -14,10 +17,10 @@ final class Email {
     }
 
     private void validateFormat(String email) {
-        Pattern pattern = Pattern.compile("^.+@.+\\..+$");
+        Pattern pattern = Pattern.compile(REGEX_VALIDATE_EMAIL_FORMAT);
         Matcher matcher = pattern.matcher(email);
         if (!matcher.matches()) {
-            throw new DomainException("Invalid email format");
+            throw new DomainException(INVALID_EMAIL_FORMAT_MESSAGE);
         }
     }
 
