@@ -3,6 +3,8 @@ package com.addi.person.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,8 +33,24 @@ final class PersonTest {
     @Test
     @DisplayName("Throw exception when email has invalid format")
     void testPersonWithInvalidEmailFormat() {
-        assertThrows(DomainException.class,
-                () -> new PersonBuilder().withEmail("Invalid email").build(),
-                "Invalid email format");
+        DomainException invalidEmailFormat = assertThrows(
+                DomainException.class,
+                () -> new PersonBuilder().withEmail("Invalid email").build()
+        );
+
+        assertEquals("Invalid email format", invalidEmailFormat.getMessage());
+    }
+
+    @Test
+    @DisplayName("Throw exception when birthdate is future")
+    void testPersonWithBirthdateInTheFuture() {
+        final LocalDate tomorrow = LocalDate.now().plusDays(1);
+
+        DomainException birthdateInTheFuture = assertThrows(
+                DomainException.class,
+                () -> new PersonBuilder().withBirthdate(tomorrow).build()
+        );
+
+        assertEquals("Birthdate cannot be in the future", birthdateInTheFuture.getMessage());
     }
 }

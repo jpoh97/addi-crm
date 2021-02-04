@@ -6,7 +6,7 @@ import java.time.Month;
 final class PersonBuilder {
 
     private final Integer nationalIdentificationNumber;
-    private final LocalDate birthdate;
+    private LocalDate birthdate;
     private String firstname;
     private final String lastname;
     private String email;
@@ -24,8 +24,13 @@ final class PersonBuilder {
         return this;
     }
 
-    public PersonBuilder withEmail(String email) {
+    PersonBuilder withEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    PersonBuilder withBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
         return this;
     }
 
