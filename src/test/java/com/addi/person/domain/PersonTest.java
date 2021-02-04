@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Agregar contratista")
@@ -41,11 +42,8 @@ final class PersonTest {
     @Test
     @DisplayName("Throw exception when email has invalid format")
     void testPersonWithInvalidEmailFormat() {
-        try {
-            new PersonBuilder().withEmail("Invalid email").build();
-            fail();
-        } catch (DomainException exception) {
-            assertEquals("Invalid email format", exception.getMessage());
-        }
+        assertThrows(DomainException.class,
+                () -> new PersonBuilder().withEmail("Invalid email").build(),
+                "Invalid email format");
     }
 }
