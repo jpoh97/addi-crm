@@ -1,6 +1,7 @@
 package com.addi.domain;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public final class Person {
 
@@ -22,5 +23,22 @@ public final class Person {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(nationalIdentificationNumber, person.nationalIdentificationNumber)
+                && Objects.equals(birthdate, person.birthdate)
+                && Objects.equals(firstname, person.firstname)
+                && Objects.equals(lastname, person.lastname)
+                && Objects.equals(email, person.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nationalIdentificationNumber, birthdate, firstname, lastname, email);
     }
 }

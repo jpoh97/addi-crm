@@ -10,7 +10,7 @@ final class PersonTest {
 
     @Test
     @DisplayName("2 people with the same data must be equal")
-    void testTwoPeopleEquals() {
+    void testTwoPeopleAreTheSame() {
         Person person1 = new PersonBuilder().build();
         Person person2 = new PersonBuilder().build();
 
