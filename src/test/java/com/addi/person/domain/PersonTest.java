@@ -1,12 +1,11 @@
 package com.addi.person.domain;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Agregar contratista")
 final class PersonTest {
@@ -27,16 +26,6 @@ final class PersonTest {
         Person person2 = new PersonBuilder().withFirstname("Alexis").build();
 
         assertNotEquals(person1, person2);
-    }
-
-    @Test
-    @DisplayName("Do not throw exception when email is valid")
-    void testPersonWithValidEmail() {
-        try {
-            new PersonBuilder().build();
-        } catch (DomainException exception) {
-            fail();
-        }
     }
 
     @Test
