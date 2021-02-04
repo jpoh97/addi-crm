@@ -31,7 +31,7 @@ final class PersonTest {
     }
 
     @Test
-    @DisplayName("Throw exception when email has invalid format")
+    @DisplayName("Throw an exception when email has invalid format")
     void testPersonWithInvalidEmailFormat() {
         DomainException invalidEmailFormat = assertThrows(
                 DomainException.class,
@@ -42,7 +42,7 @@ final class PersonTest {
     }
 
     @Test
-    @DisplayName("Throw exception when birthdate is future")
+    @DisplayName("Throw an exception when birthdate is future")
     void testPersonWithBirthdateInTheFuture() {
         final LocalDate tomorrow = LocalDate.now().plusDays(1);
 
@@ -52,5 +52,18 @@ final class PersonTest {
         );
 
         assertEquals("Birthdate cannot be in the future", birthdateInTheFuture.getMessage());
+    }
+
+    @Test
+    @DisplayName("Throw an exception when birthdate is max age")
+    void testPersonWithBirthdateMaxAge() {
+        final LocalDate twoHundredYearsAgo = LocalDate.now().minusYears(200);
+
+        DomainException birthdateInTheFuture = assertThrows(
+                DomainException.class,
+                () -> new PersonBuilder().withBirthdate(twoHundredYearsAgo).build()
+        );
+
+        assertEquals("Birthdate cannot be 150 years ago", birthdateInTheFuture.getMessage());
     }
 }
