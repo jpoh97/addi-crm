@@ -22,7 +22,7 @@ final class PersonTest {
     @DisplayName("2 people with the different data must be not equal")
     void testTwoPeopleNotEqualData() {
         Person person1 = new PersonBuilder().build();
-        Person person2 = new PersonBuilder().build();
+        Person person2 = new PersonBuilder().withFirstname("Alexis").build();
 
         assertNotEquals(person1, person2);
     }

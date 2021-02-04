@@ -7,7 +7,7 @@ final class PersonBuilder {
 
     private final Integer nationalIdentificationNumber;
     private final LocalDate birthdate;
-    private final String firstname;
+    private String firstname;
     private final String lastname;
     private final String email;
 
@@ -17,6 +17,11 @@ final class PersonBuilder {
         this.firstname = "Juan Pablo";
         this.lastname = "Ospina Herrera";
         this.email = "jpoh97@gmail.com";
+    }
+
+    PersonBuilder withFirstname(String firstname) {
+        this.firstname = firstname;
+        return this;
     }
 
     Person build() {
