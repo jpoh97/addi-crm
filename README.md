@@ -1,5 +1,7 @@
 # addi-crm project
 
+### Decisions
+
 This project is using hexagonal architecture because it let us to focus in the domain as the center of the application. In this particular use case the domain looks anemic but as the description says that is a sales pipeline application where we'll deal with different stages so it's better to have an architecture that let us to extend the application in the future.
 
 The domain model has as aggregate root the Person class because the description focus in 2 kind of person (leads and prospects). Maybe in the future when we have more information about the Pipeline and Stage we could change the aggregate root for some of these classes.
@@ -20,6 +22,23 @@ For testing the domain, I have the PersonTest class that has all the test for th
 
 Finally, I have the PersonResourceTest that is a integration test that checks all the possible cases for the converIntoProspect controller method. It's using wiremock to stub the http requests returning the data required for each test.
 
+### Future tasks
+
+* Depending on the future business requirements, we could change the domain to represent the Pipeline and Stages as entities and change the aggregate root from Person class to Pipeline.
+
+* Create a docker image using the Quarkus Native feature.
+
+* Create different execution contexts for the database access and external services call to avoid any block in the event loop (main threads that receives the requests).
+
+* Communicate with the external services using message queues.
+
+* Use an actual database.
+
+* Communicate the different components of the application using an Event Bus.
+
+* Create http filters for security validations (tokens, cors, ets).
+
+* As I'm using Java 15, I could create my custom jdk image using jlink in order to have a light version of the jar.
 
 ## Quarkus documentation
 
