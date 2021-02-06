@@ -1,19 +1,34 @@
-package com.addi.person.domain;
+package com.addi.sales_pipeline.domain.model;
+
+import com.addi.sales_pipeline.domain.exception.DomainException;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
+@RegisterForReflection
 final class Birthdate {
 
     private static final String BIRTHDATE_IN_THE_FUTURE_ERROR_MESSAGE = "Birthdate cannot be in the future";
     private static final String BIRTHDATE_MANY_YEARS_AGO_ERROR_MESSAGE = "Birthdate cannot be 150 years ago";
     private static final int MAX_VALID_AGE = 150;
 
-    private final LocalDate birthdate;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate value;
 
-    Birthdate(LocalDate birthdate) {
-        validateDate(birthdate);
-        this.birthdate = birthdate;
+    Birthdate(LocalDate value) {
+        validateDate(value);
+        this.value = value;
+    }
+
+    Birthdate() { }
+
+    public LocalDate getValue() {
+        return value;
     }
 
     private void validateDate(LocalDate birthdate) {
@@ -38,11 +53,11 @@ final class Birthdate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Birthdate birthdate1 = (Birthdate) o;
-        return Objects.equals(birthdate, birthdate1.birthdate);
+        return Objects.equals(value, birthdate1.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(birthdate);
+        return Objects.hash(value);
     }
 }

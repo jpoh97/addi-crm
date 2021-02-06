@@ -1,4 +1,4 @@
-package com.addi.person.domain;
+package com.addi.sales_pipeline.domain.exception;
 
 public class DomainException extends RuntimeException {
 

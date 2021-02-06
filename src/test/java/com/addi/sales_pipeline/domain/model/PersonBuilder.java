@@ -1,22 +1,24 @@
-package com.addi.person.domain;
+package com.addi.sales_pipeline.domain.model;
 
 import java.time.LocalDate;
 import java.time.Month;
 
 final class PersonBuilder {
 
-    private final Integer nationalIdentificationNumber;
+    private final Long nationalIdentificationNumber;
     private LocalDate birthdate;
     private String firstname;
     private final String lastname;
     private String email;
+    private final Stage stage;
 
     PersonBuilder() {
-        this.nationalIdentificationNumber = 42;
+        this.nationalIdentificationNumber = 42L;
         this.birthdate = LocalDate.of(1997, Month.FEBRUARY, 9);
         this.firstname = "Juan Pablo";
         this.lastname = "Ospina Herrera";
         this.email = "jpoh97@gmail.com";
+        this.stage = Stage.LEAD;
     }
 
     PersonBuilder withFirstname(String firstname) {
@@ -35,6 +37,6 @@ final class PersonBuilder {
     }
 
     Person build() {
-        return Person.create(nationalIdentificationNumber, birthdate, firstname, lastname, email);
+        return Person.create(nationalIdentificationNumber, birthdate, firstname, lastname, email, stage);
     }
 }
