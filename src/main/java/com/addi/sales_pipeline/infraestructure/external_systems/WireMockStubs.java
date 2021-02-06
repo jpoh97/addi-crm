@@ -23,8 +23,8 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options
 @ApplicationScoped
 class WireMockStubs {
 
-    private static final int MAX_MOCK_LATENCY = 5000;
-    private static final int MIN_MOCK_LATENCY = 2000;
+    private static final int MAX_MOCK_LATENCY = 5_000;
+    private static final int MIN_MOCK_LATENCY = 2_000;
 
     @ConfigProperty(name = "external.services.port")
     private Integer externalServicesPort;
