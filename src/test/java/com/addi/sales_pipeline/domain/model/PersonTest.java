@@ -67,4 +67,18 @@ final class PersonTest {
 
         assertEquals("Birthdate cannot be 150 years ago", birthdateInTheFuture.getMessage());
     }
+
+    @Test
+    @DisplayName("Throw an exception when promote a prospect. Only leads can be promoted")
+    void testProspectCannotBePromoted() {
+        final var twoHundredYearsAgo = LocalDate.now().minusYears(200);
+        Person person = new PersonBuilder().withStage(Stage.PROSPECT).build();
+
+        DomainException birthdateInTheFuture = assertThrows(
+                DomainException.class,
+                person::promoteNextStage
+        );
+
+        assertEquals("Only leads can be promoted", birthdateInTheFuture.getMessage());
+    }
 }

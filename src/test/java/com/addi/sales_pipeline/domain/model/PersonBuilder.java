@@ -10,7 +10,7 @@ final class PersonBuilder {
     private String firstname;
     private final String lastname;
     private String email;
-    private final Stage stage;
+    private Stage stage;
 
     PersonBuilder() {
         this.nationalIdentificationNumber = 42L;
@@ -33,6 +33,11 @@ final class PersonBuilder {
 
     PersonBuilder withBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
+        return this;
+    }
+
+    PersonBuilder withStage(Stage stage) {
+        this.stage = stage;
         return this;
     }
 
